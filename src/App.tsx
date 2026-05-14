@@ -104,13 +104,20 @@ export default function App() {
       {/* Presentation Controls */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[110] flex gap-4">
         <motion.button 
-          animate={{ scale: [1, 1.05, 1], boxShadow: ["0 0 0 0 rgba(190, 48, 38, 0)", "0 0 0 20px rgba(190, 48, 38, 0.1)", "0 0 0 0 rgba(190, 48, 38, 0)"] }}
+          animate={{ 
+            scale: [1, 1.05, 1],
+            boxShadow: [
+              "0 0 0 0 rgba(190, 48, 38, 0)",
+              "0 0 0 15px rgba(190, 48, 38, 0.2)",
+              "0 0 0 0 rgba(190, 48, 38, 0)"
+            ]
+          }}
           transition={{ repeat: Infinity, duration: 2 }}
           onClick={() => setShowConcept(!showConcept)}
-          className="bg-primary text-white px-10 py-5 rounded-full font-bold shadow-2xl flex items-center gap-3 hover:scale-105 active:scale-95 transition-all text-sm md:text-lg border-4 border-white"
+          className="bg-primary text-white px-12 py-6 rounded-full font-black shadow-[0_20px_50px_rgba(190,48,38,0.3)] flex items-center gap-4 hover:scale-105 active:scale-95 transition-all text-base md:text-xl border-[6px] border-white z-[120]"
         >
-          {showConcept ? <X className="w-6 h-6 font-bold" /> : <Sparkles className="w-6 h-6 font-bold fill-white" />}
-          {showConcept ? 'Продовжити перегляд' : 'Дивитись бізнес-концепцію Flow'}
+          {showConcept ? <X className="w-7 h-7 font-bold" /> : <Sparkles className="w-7 h-7 font-bold fill-white" />}
+          {showConcept ? 'Продовжити перегляд' : 'Дивитись бізнес-концепцію ✨'}
         </motion.button>
       </div>
 
@@ -154,7 +161,7 @@ export default function App() {
         <motion.section 
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="relative min-h-[520px] sm:min-h-[600px] lg:h-[650px] rounded-[40px] overflow-hidden bg-primary-container group mb-16 shadow-xl"
+          className="relative min-h-[520px] sm:min-h-[600px] lg:h-[650px] rounded-[40px] overflow-hidden bg-primary-container group mb-16 shadow-xl grayscale saturate-0 opacity-40 hover:opacity-60 transition-all duration-1000"
         >
           <img 
             src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1543&auto=format&fit=crop" 
@@ -206,105 +213,111 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* Share & Earn Section (Marketing Block from Screenshot) */}
-        <section className="bg-[#FAF9F6] -mx-10 px-10 py-20 rounded-[48px] mb-20 relative overflow-hidden border border-primary/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-50" />
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            {/* Left Column: Headline & Info */}
-            <div className="flex-1">
-              <div className="flex items-center gap-5 mb-8">
-                <div className="w-16 h-16 bg-[#E8E4D9] rounded-full flex items-center justify-center text-[#B5A48B] shadow-inner relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  <Star className="w-8 h-8 fill-current relative z-10" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1D1D1B] leading-tight tracking-tight">
-                  Рекомендуй улюблені товари <br /> та отримуй <span className="text-primary italic">особисту знижку</span>
+        {/* Share & Earn Section (Marketing Block) - Compact Banner Version */}
+        <section className="bg-[#FAF9F6] -mx-4 sm:-mx-10 px-6 sm:px-12 py-10 rounded-[48px] mb-20 relative overflow-hidden border border-primary/5 flex flex-col xl:flex-row items-center gap-10 justify-between">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-50 pointer-events-none" />
+          
+          {/* Left Column: Context */}
+          <div className="flex items-center gap-6 max-w-xl">
+             <div className="w-16 h-16 bg-[#E8E4D9] rounded-full flex items-center justify-center text-[#B5A48B] shadow-inner shrink-0 relative">
+                <Star className="w-8 h-8 fill-current" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-[#FAF9F6]" />
+             </div>
+             <div>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1D1D1B] leading-tight mb-2 tracking-tight">
+                  Рекомендуй улюблені товари <br className="hidden md:block" /> та отримуй <span className="text-primary italic">особисту знижку</span>
                 </h2>
-              </div>
-              <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8 max-w-xl opacity-80">
-                Поділись посиланням на свою добірку в Сильпо. Якщо товари наберуть достатньо лайків – ти отримаєш персональну знижку <span className="text-primary font-black">10–20%</span> на наступну покупку!
-              </p>
-            </div>
+                <p className="text-[#4A4A4A] text-sm md:text-base opacity-70 leading-relaxed">
+                  Поділись посиланням на свою добірку в Сільпо. Збери лайки – <br className="hidden lg:block"/> отримай персональну знижку <span className="text-primary font-black">10–20%</span>!
+                </p>
+             </div>
+          </div>
 
-            {/* Middle Column: Interactive Product Card */}
-            <div className="bg-white p-8 md:p-10 rounded-[48px] shadow-2xl border border-primary/5 w-full lg:w-[480px] relative group overflow-hidden">
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-              <h4 className="text-sm font-black text-[#1D1D1B] mb-8 uppercase tracking-widest opacity-40">Товари з рецепта</h4>
-              <div className="flex items-center gap-4 mb-12 flex-wrap sm:flex-nowrap">
+          {/* Middle Column: Interactive Card */}
+          <div className="bg-white p-6 rounded-[40px] shadow-xl border border-primary/5 flex flex-col gap-6 w-full max-w-[420px] relative group overflow-hidden">
+             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/10 via-primary to-primary/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+             
+             <div className="flex justify-between items-center">
+                <h4 className="text-[10px] font-black text-[#1D1D1B] uppercase tracking-widest opacity-40">Товари з рецепта</h4>
+                <div className="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
+                   <Heart className="w-3.5 h-3.5 fill-primary text-primary" />
+                   <span className="text-xs font-black text-primary">128</span>
+                </div>
+             </div>
+
+             <div className="grid grid-cols-5 gap-3">
                 {[
-                  { img: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=100", name: "Asparagus" },
-                  { img: "https://images.unsplash.com/photo-1559742811-822873691df0?q=80&w=100", name: "Shrimp" },
-                  { img: "https://images.unsplash.com/photo-1590544053991-396387a71777?q=80&w=100", name: "Pasta" },
-                  { img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=100", name: "Pesto" },
-                  { img: "https://images.unsplash.com/photo-1472746729083-259a4a1661d1?q=80&w=100", name: "Oil" },
+                  { img: "https://images.silpo.ua/v2/products/300x300/webp/b94f20d6-cda9-4e92-81a6-6cf575be30e5.png", name: "Креветки" },
+                  { img: "https://images.silpo.ua/v2/products/300x300/webp/073a6e6b-e95b-4f63-a56b-8af61e9b2a7d.png", name: "Груша" },
+                  { img: "https://images.silpo.ua/v2/products/300x300/webp/3bd77c16-b486-4815-bc83-762c21cb050e.png", name: "Томат" },
+                  { img: "https://images.silpo.ua/v2/products/300x300/webp/6e37858b-4fc1-453f-9b00-5d4be6a448ef.png", name: "Суп" },
+                  { img: "https://images.silpo.ua/v2/products/300x300/webp/b94f20d6-cda9-4e92-81a6-6cf575be30e5.png", name: "Креветки" },
                 ].map((item, i) => (
-                  <motion.div 
+                   <motion.div 
                     key={i} 
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-16 h-16 shrink-0 rounded-2xl bg-[#F8F7F2] p-2 flex items-center justify-center shadow-sm border border-black/5"
-                  >
-                    <img src={item.img} alt={item.name} className="w-full h-full object-contain mix-blend-multiply" referrerPolicy="no-referrer" />
-                  </motion.div>
+                    className="aspect-square rounded-2xl bg-[#F8F7F2] p-1.5 flex items-center justify-center border border-black/5 overflow-hidden shadow-sm"
+                   >
+                      <img 
+                        src={item.img} 
+                        alt={item.name} 
+                        className="w-full h-full object-contain mix-blend-multiply" 
+                        referrerPolicy="no-referrer"
+                      />
+                   </motion.div>
                 ))}
-                <div className="w-14 h-14 shrink-0 rounded-full bg-primary/5 flex items-center justify-center text-xs font-black text-primary border border-primary/10">+5</div>
-              </div>
-              
-              <div className="space-y-5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5 bg-primary/10 px-4 py-2 rounded-full">
-                    <Heart className="w-4 h-4 fill-primary text-primary" />
-                    <span className="text-sm font-black text-primary">128</span>
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.1em] text-on-surface-variant opacity-60">Потрібно ще 72 лайка для -15%</span>
+             </div>
+
+             <div className="w-full">
+                <div className="flex justify-between items-center mb-2">
+                   <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Ваш прогрес</span>
+                   <span className="text-[9px] font-black uppercase tracking-widest text-[#B5A48B]">Потрібно ще 72 лайки</span>
                 </div>
-                <div className="h-3 w-full bg-[#F3F1E8] rounded-full overflow-hidden shadow-inner">
-                  <motion.div 
+                <div className="h-2 w-full bg-[#F3F1E8] rounded-full overflow-hidden shadow-inner flex">
+                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: '64%' }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-primary to-[#ff6b6b]"
-                  />
+                    className="h-full bg-primary"
+                   />
+                   <div className="h-full bg-white/30 border-r border-white/50 w-0" />
                 </div>
-              </div>
-            </div>
+             </div>
+          </div>
 
-            {/* Right Column: Steps & CTA */}
-            <div className="flex-1 flex flex-col gap-10">
-              <div className="space-y-6">
+          {/* Right Column: CTA */}
+          <div className="flex flex-col sm:flex-row xl:flex-col items-center gap-6 xl:gap-8 w-full xl:w-auto">
+             <div className="flex xl:flex-col gap-5">
                 {[
                   { icon: Share2, title: '1. Поділись посиланням', desc: 'З друзями та у соцмережах' },
-                  { icon: Heart, title: '2. Збери лайки', desc: 'Чим більше лайків – тим вища знижка' },
-                  { icon: Gift, title: '3. Отримай знижку 10-20%', desc: 'Використай у Сильпо за посиланням' },
-                ].map((step, i) => (
-                  <motion.div 
-                    key={i} 
-                    whileHover={{ x: 10 }}
-                    className="flex gap-5 items-start p-2 rounded-3xl transition-all group"
-                  >
-                    <div className="w-12 h-12 shrink-0 rounded-full bg-white flex items-center justify-center text-on-surface-variant shadow-lg group-hover:text-primary transition-all group-hover:scale-110">
-                      <step.icon className="w-5 h-5 transition-transform" />
-                    </div>
-                    <div>
-                      <h5 className="font-black text-sm mb-1 tracking-tight">{step.title}</h5>
-                      <p className="text-xs text-on-surface-variant opacity-60 font-medium">{step.desc}</p>
-                    </div>
-                  </motion.div>
+                  { icon: Heart, title: '2. Збери лайки', desc: 'Чим більше – вища знижка' },
+                  { icon: Gift, title: '3. Отримай знижку', desc: 'Використай у Сільпо' },
+                ].map((s, i) => (
+                   <div key={i} className="flex items-center gap-4 group">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md border border-primary/5 group-hover:scale-110 transition-transform shrink-0">
+                         <s.icon className="w-5 h-5 text-on-surface-variant group-hover:text-primary transition-colors" />
+                      </div>
+                      <div className="hidden md:block">
+                        <h5 className="text-[11px] font-black uppercase tracking-tight leading-none mb-1">{s.title}</h5>
+                        <p className="text-[9px] font-medium opacity-40 leading-none">{s.desc}</p>
+                      </div>
+                   </div>
                 ))}
-              </div>
-              <motion.button 
+             </div>
+             
+             <motion.button 
                 whileHover={{ scale: 1.02, y: -4 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-[#1D1D1B] text-white py-6 px-10 rounded-[32px] font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 transition-all shadow-2xl hover:bg-black group"
-              >
+                className="flex-1 xl:flex-none w-full xl:w-72 bg-[#1D1D1B] text-white py-6 px-10 rounded-[32px] font-black uppercase tracking-[0.2em] text-[11px] flex items-center justify-center gap-3 transition-all shadow-2xl hover:bg-black group"
+             >
                 Отримати посилання
                 <MousePointerClick className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </motion.button>
-            </div>
+             </motion.button>
           </div>
         </section>
 
         {/* New Recipes */}
-        <section className="py-20 border-b border-secondary-container">
+        <section className="py-20 border-b border-secondary-container grayscale saturate-0 opacity-40 hover:opacity-60 transition-all duration-1000">
           <div className="flex justify-between items-end mb-12">
             <div>
               <h2 className="text-4xl font-serif font-bold mb-2">Новинки сезону</h2>
@@ -343,7 +356,7 @@ export default function App() {
         </section>
 
         {/* Categories Grid */}
-        <section className="py-24">
+        <section className="py-24 grayscale saturate-0 opacity-40 hover:opacity-60 transition-all duration-1000">
           <div className="flex flex-col items-center mb-16 text-center">
             <h2 className="text-4xl font-serif font-bold mb-4">Що хочеш приготувати?</h2>
             <div className="w-20 h-1 bg-primary rounded-full" />
@@ -547,7 +560,7 @@ export default function App() {
                 <div className="max-w-3xl">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-1 bg-primary rounded-full" />
-                    <span className="text-xs font-black uppercase tracking-[0.4em] text-primary">Strategic Presentation 2024</span>
+                    <span className="text-xs font-black uppercase tracking-[0.4em] text-primary">Strategic Presentation {new Date().getFullYear()}</span>
                   </div>
                   <h2 className="text-5xl md:text-7xl font-serif font-bold text-[#1a1a1a] mb-8 leading-tight">Creator Commerce &<br /><span className="text-primary italic">Shareable Collections</span></h2>
                   <p className="text-2xl font-serif text-on-surface-variant leading-relaxed italic">Як перетворити користувачів на канал продажів і поширення через соціальну комерцію.</p>
